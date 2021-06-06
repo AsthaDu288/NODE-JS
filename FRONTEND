@@ -1,0 +1,98 @@
+C:\node>npm install -g express-generator
+C:\node>express --view="ejs" nodetest1
+C:\node>express --view="ejs" nodetest1
+
+create : nodetest1\
+ create : nodetest1\public\
+ create : nodetest1\public\javascripts\
+ create : nodetest1\public\images\
+ create : nodetest1\public\stylesheets\
+ create : nodetest1\public\stylesheets\style.css
+create : nodetest1\routes\
+ create : nodetest1\routes\index.js
+create : nodetest1\routes\users.js
+create : nodetest1\views\
+ create : nodetest1\views\error.ejs
+create : nodetest1\views\index.ejs
+create : nodetest1\app.js
+create : nodetest1\package.json
+create : nodetest1\bin\
+ create : nodetest1\bin\www
+
+change directory: > cd nodetest1
+
+install dependencies: > npm install
+
+run the app: > SET DEBUG=nodetest1:* & npm start
+{
+  "name": "nodetest1",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
+  }
+}
+C:\node\nodetest1>npm install --save monk@^7.1.2 mongodb@^3.5.4
+C:\node\nodetest1>npm install
+C:\node\nodetest1>npm start
+> nodetest1@0.0.0 start C:\node\nodetest1
+> node ./bin/www
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var app = express();
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+module.exports = app;
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+var express = require('express');
+var router = express.Router();
+
+/* GET home page. */
+router.get('/', function(req, res) {
+  res.render('index', { title: 'Express' });
+});
+
+module.exports = router;
+router.get('/5','6','9','12','18','20', function(req, res) {
+  res.render('5','6','9','12','18','20', { title: 'ROLL NO.' });
+});
